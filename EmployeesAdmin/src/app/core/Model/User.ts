@@ -5,6 +5,7 @@ export interface User{
   birthDate?: Date
   user: string
   pass: string
+  active?: boolean
 }
 
 export const UsersList : User[] = [
@@ -14,7 +15,8 @@ export const UsersList : User[] = [
     role: 'sw admin',
     birthDate: new Date(1998,4,28),
     user: 'alozano',
-    pass: '1234'
+    pass: '1234',
+    active: true
   },
   {
     name: 'Karen',
@@ -22,6 +24,7 @@ export const UsersList : User[] = [
     role: 'help desk',
     birthDate: new Date(2004,10,1),
     user: 'klozano',
-    pass: '1234'
+    pass: '1234',
+    active: true
   }
 ]

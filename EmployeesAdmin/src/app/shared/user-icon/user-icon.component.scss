@@ -1,0 +1,24 @@
+.user_icon {
+  background-color: red;
+  border-radius: 60px;
+  box-sizing: border-box;
+  float: left;
+  height: 110px; width: 110px;
+  margin: 5px;
+  padding: 5px 0 0 0;
+}
+
+.user_icon .circle {
+  background-color: blue;
+  border-radius: 60px;
+  color: white;
+  font-size: 40px;
+  font-weight: 500;
+  height: 100px; width: 100px;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

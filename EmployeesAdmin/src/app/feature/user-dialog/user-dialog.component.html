@@ -1,0 +1,111 @@
+@if (data.user === ""){
+  <h2 mat-dialog-title>Crear empleado</h2>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="createForm">
+      <div class="form-container">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Usuario" type="text" formControlName="user" (keypress)="validateInput($event)" (paste)="pasteInput($event)">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <div class="column">
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Usuario" type="text" formControlName="name">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+              <mat-label>Apellido</mat-label>
+              <input matInput placeholder="Usuario" type="text" formControlName="lastName">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+          </div>
+
+          <div class="column">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de nacimiento</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="birthDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+              <mat-label>Puesto de trabajo</mat-label>
+              <mat-select formControlName="role">
+                @for (role of roles; track role) {
+                  <mat-option [value]="role">{{role | titlecase}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="Contraseña" [type]="hidePass ? 'password' : 'text'" formControlName="pass">
+            <button mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+              <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button cdkFocusInitial (click)="createUser()" [disabled]="createForm.invalid">Crear empleado</button>
+  </mat-dialog-actions>
+}@else{
+  <h2 mat-dialog-title>Actualizar empleado</h2>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="updateForm">
+      <div class="form-container">
+        <div class="column">
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Usuario" type="text" formControlName="name">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+              <mat-label>Apellido</mat-label>
+              <input matInput placeholder="Usuario" type="text" formControlName="lastName">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+          </div>
+
+          <div class="column">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de nacimiento</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="birthDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex-grow: 1;">
+              <mat-label>Puesto de trabajo</mat-label>
+              <mat-select formControlName="role">
+                @for (role of roles; track role) {
+                  <mat-option [value]="role">{{role | titlecase}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          @if(showCheck){
+            <mat-checkbox class="example-margin" color="primary" formControlName="active">Activo</mat-checkbox>
+
+          }
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button cdkFocusInitial (click)="updateUser()" [disabled]="updateForm.invalid">Actualizar empleado</button>
+  </mat-dialog-actions>
+}

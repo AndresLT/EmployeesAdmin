@@ -15,16 +15,17 @@ export class TransactionService {
   constructor(private localService: LocalService, private router: Router, private http: HttpClient) {}
 
   setUsersListToLocalStorage(){
-    this.usersList = JSON.parse(this.localService.getData('users'))
+    this.usersList = JSON.parse(this.localService.getData('users') || "[]")
     if(this.usersList.length == 0){
       this.localService.saveData('users', JSON.stringify(UsersList))
+      this.usersList = JSON.parse(this.localService.getData('users'))
     }
     console.log(this.usersList);
 
   }
 
   login(user: User){
-    if(this.usersList.find(x => x.user === user.user && x.pass === user.pass)){
+    if(this.usersList.find(x => x.user === user.user && x.pass === user.pass && x.active === true)){
       this.localService.saveData('user', JSON.stringify(this.usersList.find(x => x.user === user.user)))
       this.router.navigate(['/dashboard'])
       return true
@@ -43,6 +44,14 @@ export class TransactionService {
     }
   }
 
+  getUserList(){
+    try{
+      return JSON.parse(this.localService.getData('users'))
+    }catch{
+      return null
+    }
+  }
+
   createUser(user: User){
     try{
       if(this.usersList.find(x => x.user === user.user)){
@@ -58,23 +67,58 @@ export class TransactionService {
   }
 
   updatePassword(user: User){
-    if(this.usersList.find(x => x.user === user.user)){
-      console.log('Usuario encontrado',this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user.user)!)]);
-      this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user.user)!)].pass = user.pass
-      this.localService.saveData('users', JSON.stringify(this.usersList))
-      return true
-    }else{
+    try{
+
+      if(this.usersList.find(x => x.user === user.user)){
+        this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user.user)!)].pass = user.pass
+        this.localService.saveData('users', JSON.stringify(this.usersList))
+        return true
+      }else{
+        return false
+      }
+    }catch{
       return false
     }
 
   }
 
   updateUser(user: User){
-
+    try{
+      if(this.usersList.find(x => x.user === user.user)){
+        this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user.user)!)] = user
+        this.localService.saveData('users', JSON.stringify(this.usersList))
+        if(user.user === JSON.parse(this.localService.getData('user')).user){
+          this.localService.saveData('user', JSON.stringify(this.usersList.find(x => x.user === user.user)))
+        }
+        return true
+      }else{
+        return false
+      }
+    }catch{
+      return false
+    }
   }
 
   updateRole(user: string, newRole: string){
+    try{
+      this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user)!)].role = newRole
+      this.localService.saveData('user', JSON.stringify(this.usersList.find(x => x.user === user)))
+      this.localService.saveData('users', JSON.stringify(this.usersList))
+      return true
+    }catch{
+      return false
+    }
+  }
 
+  abandon(user: string){
+    try{
+      this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user)!)].active = false
+      this.localService.saveData('user', JSON.stringify(this.usersList.find(x => x.user === user)))
+      this.localService.saveData('users', JSON.stringify(this.usersList))
+      return true
+    }catch{
+      return false
+    }
   }
 
   async get<T>(endpoint: string, service: string){

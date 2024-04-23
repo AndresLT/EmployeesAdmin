@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
         })
       }else{
         Swal.fire({
-          text: 'Usuario o contraseña incorrectos o el usuario no existe.',
+          text: 'Usuario o contraseña incorrectos, el usuario no existe o está deshabilitado.',
           icon:'warning'
         })
       }
@@ -119,7 +119,8 @@ export class LoginComponent implements OnInit {
       lastName:this.registerForm.controls['lastname'].value!,
       birthDate:new Date(this.registerForm.controls['birthDate'].value!),
       role:this.registerForm.controls['role'].value!,
-      pass: this.registerForm.controls['password'].value!
+      pass: this.registerForm.controls['password'].value!,
+      active: true
     }
 
     if(this.transactionService.createUser(user)){

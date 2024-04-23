@@ -1,0 +1,14 @@
+.main-container{
+  display: flex;
+  height: max-content;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  flex-direction: column;
+}
+
+
+.label{
+  font-weight: bold;
+  font-size: 1rem;
+}
