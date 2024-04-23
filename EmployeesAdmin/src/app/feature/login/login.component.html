@@ -110,7 +110,7 @@
               <mat-label>Puesto de trabajo</mat-label>
               <mat-select formControlName="role">
                 @for (role of roles; track role) {
-                  <mat-option [value]="role">{{role | titlecase}}</mat-option>
+                  <mat-option [value]="role" [disabled]="role === 'sw admin'">{{role | titlecase}}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
