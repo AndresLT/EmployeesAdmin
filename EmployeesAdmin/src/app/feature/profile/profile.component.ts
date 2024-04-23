@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit {
   roleSelect = new FormControl('', Validators.required);
 
   constructor(private localService: LocalService, private transactionService: TransactionService){
-    console.log(this.localService.getData('user'));
-
     this.user = JSON.parse(this.localService.getData('user'))
   }
   async ngOnInit(): Promise<void> {
@@ -36,6 +34,7 @@ export class ProfileComponent implements OnInit {
     this.roleSelect.setValue(this.user.role!)
   }
 
+  // metodo para obtener los puestos de trabajo
   async getRoles(){
     await this.transactionService.get<string[]>(endpoint,"").then((data: any) => {
       this.roles = data.positions
@@ -47,6 +46,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  // Metodo para actualizar el puesto de trabajo
   changeRole(){
 
     if(this.transactionService.updateRole(this.user.user, this.roleSelect.value!)){
@@ -61,6 +61,11 @@ export class ProfileComponent implements OnInit {
       })
     }
   }
+
+  // Metodo para abandonar la compañía
+  // Funciona con una doble confirmación
+  // Y lo que hace es deshabilitar al usuario
+  // para que no pueda iniciar sesión
   abandon(){
     Swal.fire({
       title: "¿Estás seguro de querer abandonar la compañía?",

@@ -2,6 +2,8 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { LocalService } from '../local.service';
 
+// Guard creado para no permitir que un usuario loggeado
+// salga a la pantalla de inicio de sesión
 export const loggedGuard: CanActivateFn = (route, state) => {
   let user
   try{

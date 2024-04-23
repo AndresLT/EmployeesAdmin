@@ -20,6 +20,7 @@ export class NavbarComponent {
     this.user = JSON.parse(this.localService.getData('user') || "{}")
   }
 
+  // Metodo para cerrar sesión
   logout(){
     if(this.transactionService.logout()){
       Swal.fire({

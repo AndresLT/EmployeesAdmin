@@ -4,12 +4,17 @@ import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root'
 })
+
+// Servicio creado para administrar el LocalStorage
+// junto con la implementación de CryptoJS para
+// encriptar esta misma y añadirle seguridad
 export class LocalService {
 
   key = "s3cr3tp4ss"
 
   constructor() { }
 
+  // Metodos para administar el localStorage
   public saveData(key: string, value: string) {
     localStorage.setItem(key, this.encrypt(value));
   }
@@ -26,6 +31,7 @@ export class LocalService {
     localStorage.clear();
   }
 
+  // Metodos para encriptar y desencriptar
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();
   }

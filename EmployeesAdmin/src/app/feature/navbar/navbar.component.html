@@ -9,6 +9,9 @@
         <li class="nav-item">
           <a routerLink="profile" routerLinkActive="active" class="nav-link menu-item">Perfil</a>
         </li>
+        <!-- Se agrega condicional para que solo los usuarios con
+          puesto de trabajo de administrador sean los que puedan
+          acceder al móudulo de administración de usuarios -->
         @if(user.role === 'sw admin'){
 
           <li class="nav-item">

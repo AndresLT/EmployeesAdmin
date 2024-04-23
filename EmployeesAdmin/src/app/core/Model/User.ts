@@ -1,3 +1,4 @@
+// Interfaz de los usuarios o empleados
 export interface User{
   name?: string
   lastName?: string
@@ -8,6 +9,7 @@ export interface User{
   active?: boolean
 }
 
+// Lista inicial de usuarios por defecto
 export const UsersList : User[] = [
   {
     name: 'Andres',

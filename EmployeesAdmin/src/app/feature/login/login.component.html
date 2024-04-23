@@ -1,5 +1,6 @@
 
 <div class="main-container">
+  <!-- Formulario de login -->
   @if (actualForm == 'login') {
     <div class="login-container">
       <h3>Inicia sesión</h3>
@@ -27,6 +28,8 @@
       <p class="change-password">¿Olvidaste tu contraseña? Cámbiala <span class="link" (click)="changeForm('changePassword')">aquí</span>!</p>
       <p class="register-text">¿No tienes cuenta aún? Regístrate <span class="link" (click)="changeForm('register')">aquí</span>!</p>
     </div>
+
+  <!-- Formulario de cambio de contraseña -->
   }@else if (actualForm == 'changePassword') {
     <div class="login-container">
       <h3>Cambio de contraseña</h3>
@@ -70,6 +73,8 @@
       <p class="change-password">¿Ya tienes un usuario y contraseña? Inicia sesión <span class="link" (click)="changeForm('login')">aquí</span>!</p>
       <p class="register-text">¿No tienes cuenta aún? Regístrate <span class="link" (click)="changeForm('register')">aquí</span>!</p>
     </div>
+
+  <!-- Formulario de registro -->
   }@else if (actualForm == 'register') {
     <div class="login-container">
       <h3>Regístrate</h3>

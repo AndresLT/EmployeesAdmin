@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   roles: string[] = []
 
+  // Se crean 3 formularios, uno para cada operación, inicio de sesión, registro y cambio de contraseña
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -63,6 +64,7 @@ export class LoginComponent implements OnInit {
     await this.getRoles()
   }
 
+  // Metodo para alternar entre formularios y sus respectivas vistas
   changeForm(form: string){
     this.actualForm = form
     this.hidePass = true
@@ -72,6 +74,7 @@ export class LoginComponent implements OnInit {
     this.registerForm.reset()
   }
 
+  // Metodo para hacer login
   login(){
     if(this.loginForm.valid){
 
@@ -93,6 +96,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Metodo para cambiar contraseña
   changePassword(){
     let user: User = {
       user: this.changePasswordForm.get('username')!.value!,
@@ -112,6 +116,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //Metodo para registrar usuarios
   registerUser(){
     let user : User = {
       user: this.registerForm.controls['username'].value!,
@@ -137,6 +142,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Estos dos metodos ayudan a identidicar si las contraseñas coinciden para los formularios de registro y cambio de contraseña
   passwordChange(){
 
 
@@ -155,6 +161,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Estos metodos permiten identificar caracteres especiales para que no sea posible ingresarlos en los campos que se requiran
   validateInput(event: any) {
 
     var inputValue = event.key;
@@ -171,6 +178,7 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
   }
 
+  // metodo que consulta el api para obtener la lista d epuestos de trabajo
   async getRoles(){
     await this.transactionService.get<string[]>(endpoint,"").then((data: any) => {
       this.roles = data.positions

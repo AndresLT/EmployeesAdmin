@@ -1,16 +1,19 @@
 <div class="main-container">
 
   <div class="header-container">
+    <!-- Filtro para la tabla de usuarios -->
     <mat-form-field appearance="outline">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input [formControl]="filter">
     </mat-form-field>
 
+    <!-- Boton para crear usuarios -->
     <button mat-flat-button color="primary" aria-label="Example icon button with a home icon" style="width: 200px; margin-bottom: 10px;" (click)="openDialog()">
       Crear empleado<mat-icon>add</mat-icon>
     </button>
   </div>
 
+  <!-- Tabla de visualización de usuarios -->
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 

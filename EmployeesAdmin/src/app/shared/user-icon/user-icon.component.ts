@@ -7,6 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './user-icon.component.html',
   styleUrl: './user-icon.component.scss'
 })
+
+// Componente que crea un icono de usuario ciruclar con las iniciales
+// de su nombre y apellido
 export class UserIconComponent implements OnInit {
 
   @Input() text: string = '';

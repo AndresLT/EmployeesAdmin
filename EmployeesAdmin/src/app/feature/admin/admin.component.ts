@@ -33,11 +33,11 @@ export class AdminComponent implements AfterViewInit {
 
   constructor(private transactionService: TransactionService, public dialog: MatDialog){
     this.usersList = this.transactionService.getUserList()
-    console.log(this.usersList);
 
     this.dataSource = new MatTableDataSource(this.usersList);
   }
 
+  // Metodos necesarios para el funcionamiento de la tabla
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -52,6 +52,7 @@ export class AdminComponent implements AfterViewInit {
     }
   }
 
+  // Metodo que abre el formulaio de crear o editar usuarios
   openDialog(user?: User){
     let newUser: User = {user: "", pass: ""}
     const dialogRef = this.dialog.open(UserDialogComponent, {
