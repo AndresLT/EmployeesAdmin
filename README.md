@@ -1,6 +1,6 @@
 # EmployeesAdmin
 
-Este proyecto se llama EmployeesAdmin. Es una aplicación web para la administración de empleados. Cuenta con un sistema de inicio de sesión multiusuarios con diferentes roles y permisos. Está desarrollada con Angular y con algunas librerias adicionales como CryptoJS, Angular Material, Bootstrap, Sweetalert.
+Este proyecto se llama EmployeesAdmin. Es una aplicación web para la administración de empleados. Cuenta con un sistema de inicio de sesión multiusuarios con diferentes roles y permisos. Está desarrollada con Angular v17 y con algunas librerias adicionales como CryptoJS, Angular Material, Bootstrap, Sweetalert.
 
 ## Pasos para su ejecución
 
@@ -44,7 +44,7 @@ Esta aplicación usa el LocalStorage del Navegador como metodo para almacenar da
 
 ## Tech Stack
 
-**Cliente:** Angular
+**Cliente:** Angular 17
 
 **UI:** Angular Material, Sweetalert, Bootstrap
 
