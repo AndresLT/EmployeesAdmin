@@ -42,6 +42,8 @@ Una vez inicies sesión, ya sea con un usuario que tu mismo registres o con uno 
 
 Esta aplicación usa el LocalStorage del Navegador como metodo para almacenar datos, razón por la cual se realizó su encriptación para mayor seguridad de los datos.
 
+Se desarrollaron algunas características adicionales como Guards, Pipes, Modelos, LazyLoading. Se realizó la instalación de una fuente para los textos (Quicksand) y la estructura o arquitectura que se usó para la organización del proyecto fue la separación del código fuente en 3 cartepas principales, Core, Features y Shared.
+
 ## Tech Stack
 
 **Cliente:** Angular 17
