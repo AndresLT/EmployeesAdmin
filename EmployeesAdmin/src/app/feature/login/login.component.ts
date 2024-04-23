@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
       })
     }else{
       Swal.fire({
-        text: 'Ocurrió un error creando el empleado',
+        text: 'Ocurrió un error creando el empleado o el usuario ya existe',
         icon:'warning'
       })
     }

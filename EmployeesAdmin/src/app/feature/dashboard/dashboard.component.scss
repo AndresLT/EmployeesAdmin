@@ -1,0 +1,12 @@
+button{
+  font-weight: bold;
+}
+
+.main-container{
+  height: calc(100dvh - 56px);
+  width: 100%;
+  background-image: url("../../../assets/images/wave_2.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}

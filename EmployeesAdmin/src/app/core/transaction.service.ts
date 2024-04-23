@@ -15,10 +15,10 @@ export class TransactionService {
   constructor(private localService: LocalService, private router: Router, private http: HttpClient) {}
 
   setUsersListToLocalStorage(){
+    this.usersList = JSON.parse(this.localService.getData('users'))
     if(this.usersList.length == 0){
       this.localService.saveData('users', JSON.stringify(UsersList))
     }
-    this.usersList = JSON.parse(this.localService.getData('users'))
     console.log(this.usersList);
 
   }
@@ -45,8 +45,13 @@ export class TransactionService {
 
   createUser(user: User){
     try{
-      this.usersList.push(user)
-      return true
+      if(this.usersList.find(x => x.user === user.user)){
+        return false
+      }else{
+        this.usersList.push(user)
+        this.localService.saveData('users', JSON.stringify(this.usersList))
+        return true
+      }
     }catch{
       return false
     }
@@ -56,6 +61,7 @@ export class TransactionService {
     if(this.usersList.find(x => x.user === user.user)){
       console.log('Usuario encontrado',this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user.user)!)]);
       this.usersList[this.usersList.indexOf(this.usersList.find(x => x.user === user.user)!)].pass = user.pass
+      this.localService.saveData('users', JSON.stringify(this.usersList))
       return true
     }else{
       return false
