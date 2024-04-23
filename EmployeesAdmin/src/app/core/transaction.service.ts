@@ -20,8 +20,6 @@ export class TransactionService {
       this.localService.saveData('users', JSON.stringify(UsersList))
       this.usersList = JSON.parse(this.localService.getData('users'))
     }
-    console.log(this.usersList);
-
   }
 
   login(user: User){

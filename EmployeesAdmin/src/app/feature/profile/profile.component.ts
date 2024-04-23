@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
   roleSelect = new FormControl('', Validators.required);
 
   constructor(private localService: LocalService, private transactionService: TransactionService){
+    console.log(this.localService.getData('user'));
+
     this.user = JSON.parse(this.localService.getData('user'))
   }
   async ngOnInit(): Promise<void> {
